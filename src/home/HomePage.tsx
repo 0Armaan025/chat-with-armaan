@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { db } from "../firebaseConfig"; // Import Firestore instance
 import { collection, addDoc } from "firebase/firestore";
+import Cookies from "js-cookie"; // Import js-cookie
 
 const HomePage = () => {
   const [name, setName] = useState("");
@@ -16,8 +17,8 @@ const HomePage = () => {
         });
 
         // Store user ID and name in cookies for later use
-        document.cookie = `userId=${userRef.id}; path=/; max-age=86400;`; // Expires in 1 day
-        document.cookie = `userName=${name}; path=/; max-age=86400;`;
+        Cookies.set("userId", userRef.id, { expires: 1 }); // Expires in 1 day
+        Cookies.set("userName", name, { expires: 1 });
 
         // Navigate to the discuss page
         window.location.href = "/discuss";
