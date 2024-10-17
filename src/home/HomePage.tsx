@@ -15,9 +15,9 @@ const HomePage = () => {
           name: name,
         });
 
-        // Store user ID in localStorage for later use
-        localStorage.setItem("userId", userRef.id);
-        localStorage.setItem("userName", name);
+        // Store user ID and name in cookies for later use
+        document.cookie = `userId=${userRef.id}; path=/; max-age=86400;`; // Expires in 1 day
+        document.cookie = `userName=${name}; path=/; max-age=86400;`;
 
         // Navigate to the discuss page
         window.location.href = "/discuss";
